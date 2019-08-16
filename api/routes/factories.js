@@ -26,7 +26,7 @@ router.get('/', (req, res, next) => {
                         _id: doc._id,
                         request: {
                             type: "GET",
-                            url: 'http://localhost:3005/factories/' + doc._id
+                            url: 'https://dashboard.heroku.com/apps/infinite-ridge-95212:3005/factories/' + doc._id
                         }}
                 })
             }
@@ -68,7 +68,7 @@ router.post('/', (req, res, next) => {
                     _id: result._id,
                     request: {
                         type: 'GET',
-                        url: 'http://localhost:3005/factories/' + result._id
+                        url: 'https://dashboard.heroku.com/apps/infinite-ridge-95212/factories/' + result._id
                     }
                 }
             });
