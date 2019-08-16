@@ -13,14 +13,16 @@ class App extends Component {
   
   componentDidMount() {
     axios
-        .get('https://infinite-ridge-95212.herokuapp.com/3005/factories')
+      .get('3005/factories')
+        //.get('https://infinite-ridge-95212.herokuapp.com/3005/factories')
         //.get('http://localhost:3005/factories')
         .then(res => this.setState({ factories: res.data.factories }));
   };
 
   addFactory = (newFactory) => {
     axios
-      .post('https://infinite-ridge-95212.herokuapp.com/3005/factories', {
+        
+        .post('https://infinite-ridge-95212.herokuapp.com/3005/factories', {
         //.post('http://localhost:3005/factories', {
                   
           name: newFactory.name,
