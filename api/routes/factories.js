@@ -21,12 +21,12 @@ router.get('/', (req, res, next) => {
                         name: doc.name,
                         upperBound: doc.upperBound,
                         lowerBound: doc.lowerBound,
-                        childNodes: doc.childNodes,   // need to use map here?
+                        childNodes: doc.childNodes,
                         numberOfNodes: doc.numberOfNodes,
                         _id: doc._id,
                         request: {
                             type: "GET",
-                            url: '/factories/' + doc._id
+                            url: 'https://localhost:3005/api/factories/' + doc._id
                         }}
                 })
             }
@@ -68,7 +68,7 @@ router.post('/', (req, res, next) => {
                     _id: result._id,
                     request: {
                         type: 'GET',
-                        url: '/factories/' + result._id
+                        url: 'https://localhost:3005/api/factories/' + result._id
                     }
                 }
             });

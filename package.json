@@ -12,6 +12,7 @@
     "heroku-postbuild": "cd client && npm install && npm run build"
     
   },
+  "proxy": "http://localhost:3005",
   "author": "Sam Mennear",
   "license": "ISC",
   "dependencies": {
