@@ -1,5 +1,5 @@
 {
-  "name": "factory-rest",
+  "name": "pp-fs",
   "version": "1.0.0",
   "description": "rest framework for pp factory app",
   "engines": {
@@ -8,7 +8,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server",
+    "start": "node app",
     "heroku-postbuild": "cd client && yarn && yarn run build"
   },
   "author": "Sam Mennear",
