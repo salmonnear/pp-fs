@@ -13,13 +13,15 @@ class App extends Component {
   
   componentDidMount() {
     axios
-        .get('http://localhost:3004/factories')
+        .get('https://infinite-ridge-95212.herokuapp.com/3005/factories')
+        //.get('http://localhost:3005/factories')
         .then(res => this.setState({ factories: res.data.factories }));
   };
 
   addFactory = (newFactory) => {
     axios
-        .post('http://localhost:3004/factories', {
+      .post('https://infinite-ridge-95212.herokuapp.com/3005/factories', {
+        //.post('http://localhost:3005/factories', {
                   
           name: newFactory.name,
           lowerBound: newFactory.lowerBound,
@@ -28,7 +30,6 @@ class App extends Component {
           })
 
           .then(res => { 
-            //res.data.id = uuid.v4();
             //console.log(res.data);
             this.setState({ factories:[...this.state.factories, res.data.createdFactory] })
           });
@@ -39,7 +40,8 @@ class App extends Component {
   // Delete Factory
   delFactory = (_id) => {
     axios
-      .delete(`http://localhost:3004/factories/${_id}`)
+      .delete(`https://infinite-ridge-95212.herokuapp.com/3005/factories/${_id}`)
+      //.delete(`http://localhost:3005/factories/${_id}`)
       .then(res =>
          this.setState({ 
            factories: [...this.state.factories.filter(factory => factory._id !== _id)]
