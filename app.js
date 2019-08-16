@@ -6,8 +6,8 @@ const mongoose = require('mongoose');
 
 const factoryRoutes = require('./api/routes/factories');
 
-//var mongoDB = 'mongodb+srv://sam:P%40ssword1@clustertest-ejips.mongodb.net/test?retryWrites=true&w=majority';
-var mongoDB = 'mongodb+srv://sam:' + process.env.MONGO_ATLAS_PW +'@clustertest-ejips.mongodb.net/test?retryWrites=true&w=majority';
+var mongoDB = 'mongodb+srv://sam:P%40ssword1@clustertest-ejips.mongodb.net/test?retryWrites=true&w=majority';
+//var mongoDB = 'mongodb+srv://sam:' + process.env.MONGO_ATLAS_PW +'@clustertest-ejips.mongodb.net/test?retryWrites=true&w=majority';
 
 
 mongoose.connect(mongoDB, { useNewUrlParser: true});
