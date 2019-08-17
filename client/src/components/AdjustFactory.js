@@ -13,6 +13,7 @@ export class AdjustFactory extends Component {
     render() {
         return (
             <div>
+                <h3>Adjust Factory</h3>
                 <form onSubmit={this.onSubmit} >
                 <TextField 
                     type="text" 
@@ -23,7 +24,7 @@ export class AdjustFactory extends Component {
                     onChange={this.onChange}
                 />
                 <TextField
-                    type="number" 
+                    type="text" 
                     name="lowerBound" 
                     style={{ flex: '10', padding: '5px' }}
                     placeholder="Lower Bound"
@@ -31,7 +32,7 @@ export class AdjustFactory extends Component {
                     onChange={this.onChange}
                 />
                 <TextField
-                    type="number" 
+                    type="text" 
                     name="upperBound" 
                     style={{ flex: '10', padding: '5px' }}
                     placeholder="Upper Bound"
@@ -39,7 +40,7 @@ export class AdjustFactory extends Component {
                     onChange={this.onChange}
                 />
                 <TextField
-                    type="number" 
+                    type="text" 
                     name="numOfNodes" 
                     style={{ flex: '12', padding: '5px' }}
                     placeholder="Number of Nodes"

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+// import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import Factories from './components/Factories';
 import axios from 'axios';
 import AddFactory from './components/AddFactory';
+// import theme from './theme';
 
 class App extends Component {
   state = {
@@ -14,7 +15,7 @@ class App extends Component {
   componentDidMount() {
     console.log('test')
     axios
-      .get('/https://infinite-ridge-95212.herokuapp.com/factories')
+      .get('/factories')
         //.get('https://infinite-ridge-95212.herokuapp.com/3005/factories')
         //.get('http://localhost:3005/factories')
         .then(res => this.setState({ factories: res.data.factories }));
@@ -23,7 +24,7 @@ class App extends Component {
   addFactory = (newFactory) => {
     axios
         
-        .post('https://infinite-ridge-95212.herokuapp.com/factories', {
+        .post('/factories', {
         //.post('http://localhost:3005/factories', {
                   
           name: newFactory.name,
@@ -43,7 +44,7 @@ class App extends Component {
   // Delete Factory
   delFactory = (_id) => {
     axios
-      .delete(`https://infinite-ridge-95212.herokuapp.com/factories/${_id}`)
+      .delete(`/factories/${_id}`)
       //.delete(`http://localhost:3005/factories/${_id}`)
       .then(res =>
          this.setState({ 
@@ -55,7 +56,7 @@ class App extends Component {
 
   updateFactory = (_id) => {
     axios 
-        .patch(`https://jsonplaceholder.typicode.com/todos/${_id}`,   [
+        .patch(`/factory/${_id}`,   [
         {"propName": "name", "value": "first and best factory" },
         {"propName": "lowerBound", "value": "3"}
       ]
@@ -69,6 +70,7 @@ class App extends Component {
 
   render() {
     return (
+
       <div className="App" >
  
         <AddFactory addFactory={this.addFactory}/>

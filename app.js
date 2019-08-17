@@ -3,6 +3,7 @@ const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const path = require('path');
 
 const factoryRoutes = require('./api/routes/factories');
 
@@ -11,6 +12,9 @@ var mongoDB = 'mongodb+srv://sam:P%40ssword1@clustertest-ejips.mongodb.net/test?
 
 
 mongoose.connect(mongoDB, { useNewUrlParser: true});
+
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
@@ -32,6 +36,10 @@ app.use((req, res, next) => {
 
 
 app.use('/factories', factoryRoutes);
+
+app.get('*', (req,res) =>{
+    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
 
 app.use((req,res,next) => {
     const error = new Error('Not found');
