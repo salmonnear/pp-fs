@@ -20,9 +20,12 @@ class App extends Component {
       .get('/factories')
         .then(res => this.setState({ factories: res.data.factories }));
   };
-
+/*
   socket = io('/factories');
-
+  socket.on('factoryAdded', data => this.factoryAdded(data));
+  socket.on('factoryDeleted', data => this.factoryDeleted(data));
+  socket.on('factoryUpdated', data => this.factoryUpdated(data));
+*/
   addFactory = (newFactory) => {
     axios
         
