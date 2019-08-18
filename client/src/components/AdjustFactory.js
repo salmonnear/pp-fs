@@ -4,19 +4,41 @@ import { Button, TextField } from '@material-ui/core';
 export class AdjustFactory extends Component {
     state = {
         name: '',
-        nameIsDiff: false,
+        newName: '',
+        newNameSet: false,
+        newNameIsDiff: false,
         upperBound: '',
-        upperBoundIsDiff: false,
+        newUpperBound: '',
+        newUpperBoundSet: false,
+        newUpperBoundIsDiff: false,
         lowerBound: '',
-        lowerBoundIsDiff: false,
+        newLowerBound: '',
+        newLowerBoundSet: false,
+        newLowerBoundIsDiff: false,
         childNodes: '',
-        childNodesIsDiff: false,
+        newChildNodes: '',
+        newChildNodesSet: false,
+        newChildNodesIsDiff: false,
         numberOfNodes: '',
-        numberOfNodesIsDiff: false,
+        newNumberOfNodes: '',
+        newNumberOfNodesSet: false,
+        newNumberOfNodesIsDiff: false,
         _id: ''
 
     }
 
+    componentDidMount() {
+        this.setState({ numberOfNodes: this.props.factory.numberOfNodes });
+        this.setState({ childNodes: this.props.factory.childNodes });
+        this.setState({ lowerBound: this.props.factory.lowerBound });
+        this.setState({ upperBound: this.props.factory.upperBound });
+        this.setState({ name: this.props.factory.name });
+        this.setState({ _id: this.props.factory._id });
+    }
+
+    setDiffs = () => {
+        return true;
+    }
 
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
@@ -24,22 +46,55 @@ export class AdjustFactory extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        var cNodes = [];
-        var numbers = [];
-        
-        for (var i=0; i < this.state.numberOfNodes; i++) {
-            numbers.push(Math.random());
+
+        this.setState({ newName: this.state.newName });
+        this.setState({ newUpperBound: this.state.newUpperBound });
+        this.setState({ newLowerBound: this.state.newLowerBound });
+        this.setState({ newChildNodes: this.state.newChildNodes });
+        this.setState({ newNumberOfNodes: this.state.newNumberOfNodes });
+
+        const updateFactory = [];
+
+
+
+        if ((this.state.newNumberOfNodes!==this.state.numberOfNodes && this.state.newNumberOfNodes.length>0) || (this.state.newLowerBound!==this.state.lowerBound && this.state.newLowerBound.length>0) || (this.state.newUpperBound!==this.state.upperBound && this.state.newUpperBound.length>0) ) {
+            var cNodes = [];
+            var numbers = [];
+    
+            for (var i=0; i < this.state.newNumberOfNodes; i++) {
+                numbers.push(Math.random());
+            };
+
+            cNodes = numbers.map((num) => num = Math.round(((this.state.upperBound-this.state.lowerBound)*num) + this.state.lowerBound),0);
+
+            if (cNodes.length > 1) {
+                updateFactory.push({"propName": "childNodes", "value": cNodes})
+            };
         };
+
+        if (this.state.newName!==this.state.name) {
+            updateFactory.push({"propName": "name", "value": this.state.newName});
+        };
+
+        if (this.state.newUpperBound!==this.state.upperBound) {
+            updateFactory.push({"propName": "upperBound", "value": this.state.newUpperBound});
+        };
+
+        if (this.state.newLowerBound!==this.state.lowerBound) {
+            updateFactory.push({"propName": "lowerBound", "value": this.state.newLowerBound});
+        };
+
+        if (this.state.newNumberOfNodes!==this.state.numberOfNodes) {
+            updateFactory.push({"propName": "numberOfNodes", "value": this.state.newNumberOfNodes});
+        };
+
+        console.log(updateFactory);
+
+
         console.log(numbers);
-
-        cNodes = numbers.map((num) => num = Math.round(((this.state.upperBound-this.state.lowerBound)*num) + this.state.lowerBound),0);
-
         console.log(cNodes);
 
-        this.props.adjustFactory( this.state._id, { 
-            
-            "ok": "ok"
-        }
+        this.props.adjustFactory( this.state._id, updateFactory
                 /*"propName": "name", "value": this.state.name }*/
             
             /*
@@ -50,9 +105,7 @@ export class AdjustFactory extends Component {
             numberOfNodes: this.state.numberOfNodes
             */
         );
-        
-        //this.props.AddFactory( {name: this.state.name /*, upperBound:this.state.upperBound, lowerBound: this.state.lowerBound, childNodes: [1,2,3]*/});
-        //this.setState({ name: '' } /*, { upperBound: ''}, { lowerBound: ''} */ );
+
     }
 
 
@@ -65,45 +118,38 @@ export class AdjustFactory extends Component {
                 <form onSubmit={this.onSubmit} >
                 <TextField 
                     type="text" 
-                    name="name" 
+                    name="newName" 
                     style={{ flex: '10', padding: '5px' }}
                     placeholder="Factory Name"
-                    value={this.state.name}
+                    value={this.state.newName}
                     onChange={this.onChange}
                 />
                 <TextField
                     type="text" 
-                    name="lowerBound" 
+                    name="newLowerBound" 
                     style={{ flex: '10', padding: '5px' }}
                     placeholder="Lower Bound"
-                    value={this.state.lowerBound}
+                    value={this.state.newLowerBound}
                     onChange={this.onChange}
                 />
                 <TextField
                     type="text" 
-                    name="upperBound" 
+                    name="newUpperBound" 
                     style={{ flex: '10', padding: '5px' }}
                     placeholder="Upper Bound"
-                    value={this.state.upperBound}
+                    value={this.state.newUpperBound}
                     onChange={this.onChange}
                 />
                 <TextField
                     type="text" 
-                    name="numberOfNodes" 
+                    name="newNumberOfNodes" 
                     style={{ flex: '12', padding: '5px' }}
                     placeholder="Number of Nodes"
-                    value={this.state.numberOfNodes}
+                    value={this.state.newNumberOfNodes}
                     onChange={this.onChange}
                 />
-                {/* <input
-                    type="submit"
-                    value="submit"
-                    className="btn"
-                    style={{flex: '10'}}
-                /> */}
-                
                 <Button
-                    //onClick={this.props.adjustFactory.bind(this, _id)}
+                    onClick={this.props.adjustFactory.bind(this, _id)}
                     type="submit"
                     value="submit"
                     className="btn">

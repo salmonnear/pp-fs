@@ -11,7 +11,7 @@ router.get('/check', (req, res, next) => {
 
 router.get('/', (req, res, next) => {
     Factory.find()
-        .select('name upperBound lowerBound childNodes _id')
+        .select('name upperBound lowerBound childNodes numberOfNodes _id')
         .exec()
         .then(docs => {
             const response = {

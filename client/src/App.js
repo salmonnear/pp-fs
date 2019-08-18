@@ -25,7 +25,6 @@ class App extends Component {
     axios
         
         .post('/factories', {
-        //.post('http://localhost:3005/factories', {
                   
           name: newFactory.name,
           lowerBound: newFactory.lowerBound,
@@ -45,7 +44,6 @@ class App extends Component {
   delFactory = (_id) => {
     axios
       .delete(`/factories/${_id}`)
-      //.delete(`http://localhost:3005/factories/${_id}`)
       .then(res =>
          this.setState({ 
            factories: [...this.state.factories.filter(factory => factory._id !== _id)]
@@ -53,23 +51,21 @@ class App extends Component {
       );
   };
 
-/*
-  adjustFactory = (patchFactory, _id) => {
+
+  adjustFactory = (_id, factory) => {
     axios 
-        .patch(`/factory/${_id}`,   [
-        {"propName": "name", "value": "first and best factory" },
-        {"propName": "lowerBound", "value": "3"}
-      ]
+        .patch(`/factories/${_id}`,   factory
       )
       .then(response => 
             console.log(response));
   }
-  */
+  
+ /*
  adjustFactory = (_id) => {
    //console.log(patchFactory);
    console.log(_id);
  }
-
+*/
 
 
   render() {

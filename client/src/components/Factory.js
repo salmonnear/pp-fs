@@ -17,8 +17,8 @@ export class Factory extends Component {
         const {  _id, name, childNodes, upperBound, lowerBound } = this.props.factory;
         //console.log(childNodes);
         return (
-            <React.Fragment>
-            <ExpansionPanel key={_id}>
+            <React.Fragment key={_id}>
+            <ExpansionPanel >
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1bh-content"
@@ -28,12 +28,12 @@ export class Factory extends Component {
                 <IconButton onClick={this.props.delFactory.bind(this, _id)} aria-label="delete" style={btnStyle} size="small"><DeleteIcon fontSize="medium" /></IconButton>
               </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-            <Typography>
+            <Typography key={name}>
               childnodes {childNodes.map((num) => {
                 return <ul>{num}</ul>;
               })}
-              <p>Upper Limit : {upperBound}</p>
-              <p>Lower Limit : {lowerBound}</p>
+              Upper Limit : {upperBound}
+              Lower Limit : {lowerBound}
               {_id}
             </Typography>
 
