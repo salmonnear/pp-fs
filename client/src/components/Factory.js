@@ -34,6 +34,7 @@ export class Factory extends Component {
               })}
               Upper Limit : {upperBound}
               Lower Limit : {lowerBound}
+              <br/>
               {_id}
             </Typography>
 

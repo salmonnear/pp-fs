@@ -72,19 +72,19 @@ export class AdjustFactory extends Component {
             };
         };
 
-        if (this.state.newName!==this.state.name) {
+        if (this.state.newName!==this.state.name && this.state.newName.length>0) {
             updateFactory.push({"propName": "name", "value": this.state.newName});
         };
 
-        if (this.state.newUpperBound!==this.state.upperBound) {
+        if (this.state.newUpperBound!==this.state.upperBound && this.state.newUpperBound.length>0) {
             updateFactory.push({"propName": "upperBound", "value": this.state.newUpperBound});
         };
 
-        if (this.state.newLowerBound!==this.state.lowerBound) {
+        if (this.state.newLowerBound!==this.state.lowerBound && this.state.newLowerBound.length>0) {
             updateFactory.push({"propName": "lowerBound", "value": this.state.newLowerBound});
         };
 
-        if (this.state.newNumberOfNodes!==this.state.numberOfNodes) {
+        if (this.state.newNumberOfNodes!==this.state.numberOfNodes && this.state.newNumberOfNodes.length>0) {
             updateFactory.push({"propName": "numberOfNodes", "value": this.state.newNumberOfNodes});
         };
 
@@ -95,15 +95,6 @@ export class AdjustFactory extends Component {
         console.log(cNodes);
 
         this.props.adjustFactory( this.state._id, updateFactory
-                /*"propName": "name", "value": this.state.name }*/
-            
-            /*
-            name: this.state.name,
-            upperBound: this.state.upperBound, 
-            lowerBound: this.state.lowerBound, 
-            childNodes: cNodes, 
-            numberOfNodes: this.state.numberOfNodes
-            */
         );
 
     }
