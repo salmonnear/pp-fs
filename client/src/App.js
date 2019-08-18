@@ -4,6 +4,8 @@ import './App.css';
 import Factories from './components/Factories';
 import axios from 'axios';
 import AddFactory from './components/AddFactory';
+import io from 'socket.io-client';
+import {URI_DB} from './';
 // import theme from './theme';
 
 class App extends Component {
@@ -16,10 +18,10 @@ class App extends Component {
     console.log('test')
     axios
       .get('/factories')
-        //.get('https://infinite-ridge-95212.herokuapp.com/3005/factories')
-        //.get('http://localhost:3005/factories')
         .then(res => this.setState({ factories: res.data.factories }));
   };
+
+  socket = io('/factories');
 
   addFactory = (newFactory) => {
     axios
@@ -40,7 +42,6 @@ class App extends Component {
   }
 
 
-  // Delete Factory
   delFactory = (_id) => {
     axios
       .delete(`/factories/${_id}`)
@@ -59,13 +60,6 @@ class App extends Component {
       .then(response => 
             console.log(response));
   }
-  
- /*
- adjustFactory = (_id) => {
-   //console.log(patchFactory);
-   console.log(_id);
- }
-*/
 
 
   render() {

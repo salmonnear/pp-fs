@@ -24,8 +24,8 @@ export class Factory extends Component {
                 aria-controls="panel1bh-content"
                 id="panel1bh-header"
                 >
-                <Typography ><h3>{name}</h3></Typography>
                 <IconButton onClick={this.props.delFactory.bind(this, _id)} aria-label="delete" size="small"><DeleteIcon /></IconButton>
+                <Typography className="factTitle"><h3>{name}</h3></Typography>
               </ExpansionPanelSummary>
             <ExpansionPanelDetails>
             <Typography key={name}>

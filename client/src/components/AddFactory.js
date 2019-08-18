@@ -4,8 +4,6 @@ import { ExpansionPanel, Button, TextField } from '@material-ui/core';
 
 
   
-
-
 export class AddFactory extends Component {
     state = {
         name: '',
@@ -83,33 +81,24 @@ export class AddFactory extends Component {
                     value={this.state.numberOfNodes}
                     onChange={this.onChange}
                 />
+                <br/>
                 <Button
                     type="submit"
                     value="submit"
                     className="btn">
                         Add Factory
                     </Button>
-                
-                
-                {/* <input
-                    type="submit"
-                    value="submit"
-                    className="btn"
-                    style={{flex: 1}}
-                /> */}
-
-
 
             </form>
             </ExpansionPanel>
-
-
 
             </div>
            
         )
     }
 }
+
+
 
 // PropTypes
 AddFactory.propTypes = {

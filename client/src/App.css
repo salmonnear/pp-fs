@@ -51,3 +51,7 @@ Button {
 .expPan {
   background-color: yellow;
 }
+
+.factTitle {
+  padding-left: 30px;
+}
