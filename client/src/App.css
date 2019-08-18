@@ -1,3 +1,8 @@
+body {
+  background-color: rgb(31, 156, 228);
+  height: 100%;
+}
+
 .container {
   text-align: center;
   padding: 10px 5px;
@@ -30,9 +35,19 @@
 
 .headerLabel {
   float: center;
-  color: rgb(11, 18, 109);
+  padding-left: 15px;
+  color: rgb(255, 255, 255);
 }
 
 form {
   padding: 10px;
+}
+
+Button {
+  background-color: green;
+  color: green;
+}
+
+.expPan {
+  background-color: yellow;
 }

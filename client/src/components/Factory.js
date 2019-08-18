@@ -18,21 +18,23 @@ export class Factory extends Component {
         //console.log(childNodes);
         return (
             <React.Fragment key={_id}>
-            <ExpansionPanel >
+            <ExpansionPanel>
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1bh-content"
                 id="panel1bh-header"
                 >
                 <Typography ><h3>{name}</h3></Typography>
-                <IconButton onClick={this.props.delFactory.bind(this, _id)} aria-label="delete" style={btnStyle} size="small"><DeleteIcon fontSize="medium" /></IconButton>
+                <IconButton onClick={this.props.delFactory.bind(this, _id)} aria-label="delete" size="small"><DeleteIcon /></IconButton>
               </ExpansionPanelSummary>
             <ExpansionPanelDetails>
             <Typography key={name}>
               childnodes {childNodes.map((num) => {
                 return <ul>{num}</ul>;
               })}
+              <br/>
               Upper Limit : {upperBound}
+              <br/>
               Lower Limit : {lowerBound}
               <br/>
               {_id}
@@ -48,9 +50,5 @@ export class Factory extends Component {
     }
 }
 
-const btnStyle = {
-    float: 'right',
-    
-}
 
 export default Factory

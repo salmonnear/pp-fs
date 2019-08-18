@@ -104,7 +104,7 @@ export class AdjustFactory extends Component {
     render() {
         const { _id, name, childNodes, upperBound, lowerBound } = this.props.factory;
         return (
-            <div>
+            <div className="container">
                 <h3>Adjust Factory</h3>
                 <form onSubmit={this.onSubmit} >
                 <TextField 
@@ -139,6 +139,7 @@ export class AdjustFactory extends Component {
                     value={this.state.newNumberOfNodes}
                     onChange={this.onChange}
                 />
+                <br/>
                 <Button
                     onClick={this.props.adjustFactory.bind(this, _id)}
                     type="submit"

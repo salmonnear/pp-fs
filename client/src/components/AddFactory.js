@@ -17,8 +17,6 @@ export class AddFactory extends Component {
     }
 
 
-
-
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
     }
@@ -31,13 +29,8 @@ export class AddFactory extends Component {
         for (var i=0; i < this.state.numberOfNodes; i++) {
             numbers.push(Math.random());
         };
-        console.log(numbers);
 
-        //cNodes = numbers.map((num) => num = Math.round(((this.state.upperBound-this.state.lowerBound)*num) + this.state.lowerBound),0);
         cNodes = numbers.map((num) => num = Math.ceil(((this.state.upperBound-this.state.lowerBound)*num) + this.state.lowerBound));
-
-
-        console.log(cNodes);
 
         this.props.addFactory( {name: this.state.name, 
             upperBound: this.state.upperBound, 
@@ -46,14 +39,9 @@ export class AddFactory extends Component {
             numberOfNodes: this.state.numberOfNodes
 
         });
-        
-        //this.props.AddFactory( {name: this.state.name /*, upperBound:this.state.upperBound, lowerBound: this.state.lowerBound, childNodes: [1,2,3]*/});
-        //this.setState({ name: '' } /*, { upperBound: ''}, { lowerBound: ''} */ );
+
     }
 
-
-
-    
 
     render() {
         return (
