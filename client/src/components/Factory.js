@@ -18,27 +18,27 @@ export class Factory extends Component {
         //console.log(childNodes);
         return (
             <React.Fragment>
-<ExpansionPanel key={_id}>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1bh-content"
-          id="panel1bh-header"
-        >
-          <Typography ><h3>{name}</h3></Typography>
-          <IconButton onClick={this.props.delFactory.bind(this, _id)} aria-label="delete" style={btnStyle} size="small"><DeleteIcon fontSize="medium" /></IconButton>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <Typography>
-            childnodes {childNodes.map((num) => {
+            <ExpansionPanel key={_id}>
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1bh-content"
+                id="panel1bh-header"
+                >
+                <Typography ><h3>{name}</h3></Typography>
+                <IconButton onClick={this.props.delFactory.bind(this, _id)} aria-label="delete" style={btnStyle} size="small"><DeleteIcon fontSize="medium" /></IconButton>
+              </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+            <Typography>
+              childnodes {childNodes.map((num) => {
                 return <ul>{num}</ul>;
-            })}
-            <p>Upper Limit : {upperBound}</p>
-            <p>Lower Limit : {lowerBound}</p>
-            {_id}
+              })}
+              <p>Upper Limit : {upperBound}</p>
+              <p>Lower Limit : {lowerBound}</p>
+              {_id}
+            </Typography>
 
-          </Typography>
-
-          <AdjustFactory />
+          <AdjustFactory key={_id} factory={this.props.factory} adjustFactory={this.props.adjustFactory}/>
+              
           
         </ExpansionPanelDetails>
         </ExpansionPanel>

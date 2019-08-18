@@ -53,8 +53,8 @@ class App extends Component {
       );
   };
 
-
-  updateFactory = (_id) => {
+/*
+  adjustFactory = (patchFactory, _id) => {
     axios 
         .patch(`/factory/${_id}`,   [
         {"propName": "name", "value": "first and best factory" },
@@ -64,7 +64,11 @@ class App extends Component {
       .then(response => 
             console.log(response));
   }
-  
+  */
+ adjustFactory = (_id) => {
+   //console.log(patchFactory);
+   console.log(_id);
+ }
 
 
 
@@ -75,7 +79,7 @@ class App extends Component {
  
         <AddFactory addFactory={this.addFactory}/>
         <h1 className="headerLabel">Factories</h1>
-        <Factories key={this.state.factories._id} factories = { this.state.factories } delFactory={ this.delFactory}/>
+        <Factories key={this.state.factories._id} factories = { this.state.factories } delFactory={ this.delFactory} adjustFactory={this.adjustFactory}/>
 
         
       </div>

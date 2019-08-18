@@ -13,7 +13,7 @@ export class Factories extends Component {
         return this.props.factories.map( (factory) => (
 
             <div className="container">
-                    <Factory key = {factory._id} factory={factory} delFactory={this.props.delFactory}   />
+                    <Factory key = {factory._id} factory={factory} delFactory={this.props.delFactory}  adjustFactory={this.props.adjustFactory} />
             </div>
         ));
 
@@ -25,6 +25,7 @@ export class Factories extends Component {
 Factories.propTypes = {
     factories: PropTypes.array.isRequired,
     delFactory: PropTypes.func.isRequired,
+    adjustFactory: PropTypes.func.isRequired,
 }
 
 

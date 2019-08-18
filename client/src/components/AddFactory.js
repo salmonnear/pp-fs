@@ -12,7 +12,8 @@ export class AddFactory extends Component {
         upperBound: '',
         lowerBound: '',
         childNodes: '',
-        numberOfNodes: ''
+        numberOfNodes: '',
+        _id: ''
     }
 
 
@@ -32,7 +33,9 @@ export class AddFactory extends Component {
         };
         console.log(numbers);
 
-        cNodes = numbers.map((num) => num = Math.round(((this.state.upperBound-this.state.lowerBound)*num) + this.state.lowerBound),0);
+        //cNodes = numbers.map((num) => num = Math.round(((this.state.upperBound-this.state.lowerBound)*num) + this.state.lowerBound),0);
+        cNodes = numbers.map((num) => num = Math.ceil(((this.state.upperBound-this.state.lowerBound)*num) + this.state.lowerBound));
+
 
         console.log(cNodes);
 
