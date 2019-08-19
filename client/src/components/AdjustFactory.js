@@ -82,14 +82,6 @@ export class AdjustFactory extends Component {
     onSubmit = (e) => {
         e.preventDefault();
 
-/*
-        this.setState({ newName: this.state.newName });
-        this.setState({ newUpperBound: this.state.newUpperBound });
-        this.setState({ newLowerBound: this.state.newLowerBound });
-        this.setState({ newChildNodes: this.state.newChildNodes });
-        this.setState({ newNumberOfNodes: this.state.newNumberOfNodes });
-*/
-
         const updateFactory = [];
 
 
@@ -128,15 +120,7 @@ export class AdjustFactory extends Component {
         };
 
 
-
-        console.log(updateFactory);
-
-
-        console.log(numbers);
-        console.log(cNodes);
-
-        this.props.adjustFactory( this.state._id, updateFactory
-        );
+        this.props.adjustFactory( this.state._id, updateFactory);
 
     }
 
