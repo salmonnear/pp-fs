@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 
 
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");  // * represents allowing access to all address .could also just use address of resource
+    res.header("Access-Control-Allow-Origin", "*");
     res.header(
         "Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept, Authorization"

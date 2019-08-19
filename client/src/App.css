@@ -55,3 +55,8 @@ Button {
 .factTitle {
   padding-left: 30px;
 }
+
+.inputWarning {
+  color: red;
+  font-size: 13px;
+}

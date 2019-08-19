@@ -7,7 +7,13 @@ import AddFactory from './components/AddFactory';
 import io from 'socket.io-client';
 import {URI_DB} from './';
 // import theme from './theme';
-
+/*
+const socket = io('/factories');
+socket.on('factoryAdded', data => this.factoryAdded(data));
+socket.on('factoryDeleted', data => this.factoryDeleted(data));
+socket.on('factoryUpdated', data => this.factoryUpdated(data));
+socket.on('cool msg', data => console.log('got a message!'));
+*/
 class App extends Component {
   state = {
     factories: []
@@ -20,12 +26,10 @@ class App extends Component {
       .get('/factories')
         .then(res => this.setState({ factories: res.data.factories }));
   };
-/*
-  socket = io('/factories');
-  socket.on('factoryAdded', data => this.factoryAdded(data));
-  socket.on('factoryDeleted', data => this.factoryDeleted(data));
-  socket.on('factoryUpdated', data => this.factoryUpdated(data));
-*/
+
+
+
+
   addFactory = (newFactory) => {
     axios
         

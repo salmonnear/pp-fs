@@ -4,5 +4,20 @@ const app = require('./app');
 const port = process.env.PORT || 3005;
 
 const server = http.createServer(app);
+const socketIO = require('socket.io')
+const io = socketIO(server)
 
-server.listen(port);
+
+io.on('connection', (socket) => {
+    //io.emit('cool msg');
+    console.log('hi from socket, connected');
+
+    socket.on('disconnect', () => {
+        //io.emit('user disconnected');
+        console.log('user disconnected');
+    });
+});
+
+server.listen(port, () => {
+    console.log('listening on port ' + port);
+});

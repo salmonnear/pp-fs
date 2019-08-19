@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ExpansionPanel, Button, TextField } from '@material-ui/core';
+import { ExpansionPanel, ExpansionPanelDetails, Button, TextField, ExpansionPanelSummary } from '@material-ui/core';
 
+import AddBoxIcon from '@material-ui/icons/AddBox';
 
   
 export class AddFactory extends Component {
@@ -28,6 +29,7 @@ export class AddFactory extends Component {
             numbers.push(Math.random());
         };
 
+        //cNodes = numbers.map((num) => num = Math.ceil(((this.state.upperBound-this.state.lowerBound)*num) + this.state.lowerBound));
         cNodes = numbers.map((num) => num = Math.ceil(((this.state.upperBound-this.state.lowerBound)*num) + this.state.lowerBound));
 
         this.props.addFactory( {name: this.state.name, 
@@ -46,8 +48,16 @@ export class AddFactory extends Component {
             <div>
  
 
-
+    
     <ExpansionPanel>
+        <ExpansionPanelSummary
+                        expandIcon={<AddBoxIcon />}
+                        aria-controls="panel1bh-content"
+                        id="panel1bh-header"
+                        >
+                            Add Factory
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
             <form onSubmit={this.onSubmit} >
                 <TextField 
                     type="text" 
@@ -58,7 +68,7 @@ export class AddFactory extends Component {
                     onChange={this.onChange}
                 />
                 <TextField
-                    type="text" 
+                    type="number" 
                     name="lowerBound" 
                     style={{ flex: '10', padding: '5px' }}
                     placeholder="Lower Bound"
@@ -66,7 +76,7 @@ export class AddFactory extends Component {
                     onChange={this.onChange}
                 />
                 <TextField
-                    type="text" 
+                    type="number" 
                     name="upperBound" 
                     style={{ flex: '10', padding: '5px' }}
                     placeholder="Upper Bound"
@@ -74,7 +84,7 @@ export class AddFactory extends Component {
                     onChange={this.onChange}
                 />
                 <TextField
-                    type="text" 
+                    type="number" 
                     name="numberOfNodes" 
                     style={{ flex: '10', padding: '5px' }}
                     placeholder="Number of Nodes"
@@ -86,10 +96,11 @@ export class AddFactory extends Component {
                     type="submit"
                     value="submit"
                     className="btn">
-                        Add Factory
+                        Add
                     </Button>
 
             </form>
+            </ExpansionPanelDetails>
             </ExpansionPanel>
 
             </div>
