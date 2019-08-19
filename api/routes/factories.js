@@ -4,10 +4,6 @@ const mongoose = require('mongoose');
 
 const Factory = require('../models/factory');
 
-router.get('/check', (req, res, next) => {
-    res.send('hello');
-});
-
 
 router.get('/', (req, res, next) => {
     Factory.find()
@@ -23,11 +19,8 @@ router.get('/', (req, res, next) => {
                         lowerBound: doc.lowerBound,
                         childNodes: doc.childNodes,
                         numberOfNodes: doc.numberOfNodes,
-                        _id: doc._id,
-                        request: {
-                            type: "GET",
-                            url: 'https://localhost:3005/api/factories/' + doc._id
-                        }}
+                        _id: doc._id
+                        }
                 })
             }
             console.log(response);
@@ -65,11 +58,7 @@ router.post('/', (req, res, next) => {
                     lowerBound: result.lowerBound,
                     childNodes: result.childNodes,
                     numberOfNodes: result.numberOfNodes,
-                    _id: result._id,
-                    request: {
-                        type: 'GET',
-                        url: 'https://localhost:3005/api/factories/' + result._id
-                    }
+                    _id: result._id
                 }
             });
         })

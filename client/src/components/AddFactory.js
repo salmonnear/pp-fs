@@ -29,8 +29,7 @@ export class AddFactory extends Component {
             numbers.push(Math.random());
         };
 
-        //cNodes = numbers.map((num) => num = Math.ceil(((this.state.upperBound-this.state.lowerBound)*num) + this.state.lowerBound));
-        cNodes = numbers.map((num) => num = Math.ceil(((this.state.upperBound-this.state.lowerBound)*num) + this.state.lowerBound));
+        cNodes = numbers.map((num) => num = Number(this.state.lowerBound) + Math.round(num*(this.state.upperBound-this.state.lowerBound+1)));
 
         this.props.addFactory( {name: this.state.name, 
             upperBound: this.state.upperBound, 

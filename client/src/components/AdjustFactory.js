@@ -101,10 +101,14 @@ export class AdjustFactory extends Component {
             for (var i=0; i < this.state.newNumberOfNodes; i++) {
                 numbers.push(Math.random());
             };
-////this mutherfucker is concatenating and not adding...smh
+
+
+
             //cNodes = numbers.map((num) => num =  Math.ceil(((this.state.upperBound-this.state.lowerBound)*num) + this.state.lowerBound));
             cNodes = numbers.map((num) => num = Number(this.state.newLowerBound) + Math.round(num*(this.state.newUpperBound-this.state.newLowerBound)));//(num*(this.state.newUpperBound-this.state.newLowerBound+1)) + this.state.newLowerBound);          //Math.round(  ((this.state.newUpperBound-this.state.newLowerBound)*num) + this.state.newLowerBound)  ,0);
-console.log(cNodes);
+
+            console.log(cNodes);
+
             if (cNodes.length > 1) {
                 updateFactory.push({"propName": "childNodes", "value": cNodes})
             };
@@ -125,6 +129,8 @@ console.log(cNodes);
         if (this.state.newNumberOfNodes!==this.state.numberOfNodes && this.state.newNumberOfNodes.length>0) {
             updateFactory.push({"propName": "numberOfNodes", "value": this.state.newNumberOfNodes});
         };
+
+
 
         console.log(updateFactory);
 

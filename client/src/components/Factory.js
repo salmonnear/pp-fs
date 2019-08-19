@@ -24,7 +24,6 @@ export class Factory extends Component {
                 aria-controls="panel1bh-content"
                 id="panel1bh-header"
                 >
-                <IconButton onClick={this.props.delFactory.bind(this, _id)} aria-label="delete" size="small"><DeleteIcon /></IconButton>
                 <Typography className="factTitle"><h3>{name}</h3></Typography>
               </ExpansionPanelSummary>
             <ExpansionPanelDetails>
@@ -38,6 +37,8 @@ export class Factory extends Component {
               Lower Limit : {lowerBound}
               <br/>
               {_id}
+              <br/>
+              <IconButton onClick={this.props.delFactory.bind(this, _id)} aria-label="delete" size="small"><DeleteIcon /></IconButton>
             </Typography>
 
           <AdjustFactory key={_id} factory={this.props.factory} adjustFactory={this.props.adjustFactory}/>
