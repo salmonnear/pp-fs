@@ -28,15 +28,13 @@ export class Factory extends Component {
               </ExpansionPanelSummary>
             <ExpansionPanelDetails>
             <Typography key={name}>
-              childnodes {childNodes.map((num) => {
+              <h3>Nodes</h3>{childNodes.map((num) => {
                 return <ul>{num}</ul>;
               })}
               <br/>
-              Upper Limit : {upperBound}
+              Upper: {upperBound}
               <br/>
-              Lower Limit : {lowerBound}
-              <br/>
-              {_id}
+              Lower: {lowerBound}
               <br/>
               <IconButton onClick={this.props.delFactory.bind(this, _id)} aria-label="delete" size="small"><DeleteIcon /></IconButton>
             </Typography>

@@ -29,7 +29,7 @@ export class AddFactory extends Component {
             numbers.push(Math.random());
         };
 
-        cNodes = numbers.map((num) => num = Number(this.state.lowerBound) + Math.round(num*(this.state.upperBound-this.state.lowerBound+1)));
+        cNodes = numbers.map((num) => num = Number(this.state.lowerBound) + Math.round(num*(this.state.upperBound-this.state.lowerBound)));
 
         this.props.addFactory( {name: this.state.name, 
             upperBound: this.state.upperBound, 
@@ -50,15 +50,16 @@ export class AddFactory extends Component {
     
     <ExpansionPanel>
         <ExpansionPanelSummary
-                        expandIcon={<AddBoxIcon />}
-                        aria-controls="panel1bh-content"
-                        id="panel1bh-header"
-                        >
-                            Add Factory
+                expandIcon={<AddBoxIcon />}
+                aria-controls="panel1bh-content"
+                id="panel1bh-header"
+                >
+                    Add Factory
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
             <form onSubmit={this.onSubmit} >
                 <TextField 
+                    required
                     type="text" 
                     name="name" 
                     style={{ flex: '10', padding: '5px' }}

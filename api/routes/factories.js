@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const sanitize = require('mongo-sanitize');
 
 const Factory = require('../models/factory');
 
@@ -39,7 +40,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
     const factory = new Factory({
-        name: req.body.name,
+        name: sanitize(req.body.name),
         upperBound: req.body.upperBound,
         lowerBound: req.body.lowerBound,
         childNodes: req.body.childNodes,
@@ -95,7 +96,7 @@ router.patch('/:id', (req, res, next) => {
     const id = req.params.id;
     const updateOps = {};
     for (const ops of req.body) {
-        updateOps[ops.propName] = ops.value;
+        updateOps[ops.propName] = sanitize(ops.value);
     }
     Factory.update({ _id: id }, { $set: updateOps })
         .exec()

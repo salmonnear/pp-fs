@@ -103,10 +103,7 @@ export class AdjustFactory extends Component {
             };
 
 
-
-            //cNodes = numbers.map((num) => num =  Math.ceil(((this.state.upperBound-this.state.lowerBound)*num) + this.state.lowerBound));
-            cNodes = numbers.map((num) => num = Number(this.state.newLowerBound) + Math.round(num*(this.state.newUpperBound-this.state.newLowerBound)));//(num*(this.state.newUpperBound-this.state.newLowerBound+1)) + this.state.newLowerBound);          //Math.round(  ((this.state.newUpperBound-this.state.newLowerBound)*num) + this.state.newLowerBound)  ,0);
-
+            cNodes = numbers.map((num) => num = Number(this.state.newLowerBound) + Math.round(num*(this.state.newUpperBound-this.state.newLowerBound)));
             console.log(cNodes);
 
             if (cNodes.length > 1) {
