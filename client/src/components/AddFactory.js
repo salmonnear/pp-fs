@@ -85,6 +85,8 @@ export class AddFactory extends Component {
                 />
                 <TextField
                     type="number" 
+                    min="0"
+                    max="15"
                     name="numberOfNodes" 
                     style={{ flex: '10', padding: '5px' }}
                     placeholder="Number of Nodes"

@@ -1,11 +1,11 @@
 const http = require('http');
 const app = require('./app');
+const socketIO = require('socket.io');
 
 const port = process.env.PORT || 3005;
 
 const server = http.createServer(app);
-const socketIO = require('socket.io')
-const io = socketIO(server)
+const io = socketIO(server);
 
 
 io.on('connection', (socket) => {

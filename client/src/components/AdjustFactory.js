@@ -64,10 +64,6 @@ export class AdjustFactory extends Component {
     }
 
 
-    setDiffs = () => {
-        return true;
-    }
-
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
 
@@ -161,6 +157,8 @@ export class AdjustFactory extends Component {
                 {this.state.newUpperBoundIsValid  ? null : <p className="inputWarning">Enter positive integer</p>}
                 <TextField
                     type="number" 
+                    min="0"
+                    max="15"
                     name="newNumberOfNodes" 
                     style={{ flex: '12', padding: '5px' }}
                     placeholder="Number of Nodes"
