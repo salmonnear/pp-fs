@@ -13,9 +13,9 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 export class Factory extends Component {
     
     render() {
-        //const _id = Math.round(Math.random() *100000000, 0);
+
         const {  _id, name, childNodes, upperBound, lowerBound } = this.props.factory;
-        //console.log(childNodes);
+        
         return (
             <React.Fragment key={_id}>
             <ExpansionPanel>

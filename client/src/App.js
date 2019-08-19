@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import Factories from './components/Factories';
 import axios from 'axios';
@@ -32,17 +31,13 @@ class App extends Component {
 
   addFactory = (newFactory) => {
     axios
-        
         .post('/factories', {
-                  
           name: newFactory.name,
           lowerBound: newFactory.lowerBound,
           upperBound: newFactory.upperBound,
           childNodes: newFactory.childNodes
           })
-
           .then(res => { 
-            //console.log(res.data);
             this.setState({ factories:[...this.state.factories, res.data.createdFactory] })
           });
         
@@ -73,12 +68,10 @@ class App extends Component {
     return (
 
       <div className="App" >
- 
         <AddFactory addFactory={this.addFactory}/>
         <h1 className="headerLabel">Factories</h1>
         <Factories key={this.state.factories._id} factories = { this.state.factories } delFactory={ this.delFactory} adjustFactory={this.adjustFactory}/>
 
-        
       </div>
     );
 
