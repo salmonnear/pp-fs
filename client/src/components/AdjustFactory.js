@@ -129,6 +129,7 @@ export class AdjustFactory extends Component {
                 <h3>Adjust Factory</h3>
                 <form onSubmit={this.onSubmit} >
                 <TextField 
+                    label="Name"
                     type="text" 
                     name="newName" 
                     style={{ flex: '10', padding: '5px' }}
@@ -138,24 +139,29 @@ export class AdjustFactory extends Component {
                 />
                 {(this.state.newNameIsValid)  ? null : <p className="inputWarning">Enter valid name</p>}
                 <TextField
+                    label="Lower"
                     type="number" 
                     name="newLowerBound" 
                     style={{ flex: '10', padding: '5px' }}
                     placeholder="Lower Bound"
                     value={this.state.newLowerBound}
                     onChange={this.onChange}
+                    InputProps={{inputProps: { min: 0, max: Number(this.state.newUpperBound)-1}}}
                 />
                 {this.state.newLowerBoundIsValid  ? null : <p className="inputWarning">Enter positive integer</p>}
                 <TextField
+                    label="Upper"
                     type="number" 
                     name="newUpperBound" 
                     style={{ flex: '10', padding: '5px' }}
                     placeholder="Upper Bound"
                     value={this.state.newUpperBound}
                     onChange={this.onChange}
+                    InputProps={{inputProps: { min:  Number(this.state.newLowerBound)+1 /*!=="" ?  : */, max: 1000000}}}
                 />
                 {this.state.newUpperBoundIsValid  ? null : <p className="inputWarning">Enter positive integer</p>}
                 <TextField
+                    label="Nodes"
                     type="number" 
                     min="0"
                     max="15"

@@ -76,6 +76,7 @@ export class AddFactory extends Component {
             <form onSubmit={this.onSubmit} >
                 <TextField 
                     required
+                    label="Name"
                     type="text" 
                     name="name" 
                     style={{ flex: '10', padding: '5px' }}
@@ -85,6 +86,7 @@ export class AddFactory extends Component {
                 />
                 <TextField
                     required
+                    label="Lower"
                     type="number" 
                     name="lowerBound" 
                     style={{ flex: '10', padding: '5px' }}
@@ -95,16 +97,18 @@ export class AddFactory extends Component {
                 />
                 <TextField
                     required
+                    label="Upper"
                     type="number" 
                     name="upperBound" 
                     style={{ flex: '10', padding: '5px' }}
-                    placeholder="Upper Bound"
+                    //placeholder="Upper Bound"
                     value={this.state.upperBound}
                     onChange={this.onChange}
                     InputProps={{inputProps: { min:  Number(this.state.lowerBound)+1 /*!=="" ?  : */, max: 1000000}}}
                 />
                 <TextField
                     required
+                    label="Nodes"
                     type="number" 
                     min="0"
                     max="15"
