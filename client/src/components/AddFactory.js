@@ -17,11 +17,24 @@ export class AddFactory extends Component {
 
 
     onChange = (e) => {
+        // always update state with user input
         this.setState({ [e.target.name]: e.target.value });
+
+        /* 
+        {e.target.name == "lowerBound" && 
+        ? }
+
+
+        */
+
     }
 
     onSubmit = (e) => {
         e.preventDefault();
+
+        // begin move this section to server!!!
+        // but maybe not? ok here for now?
+
         var cNodes = [];
         var numbers = [];
         
@@ -31,9 +44,12 @@ export class AddFactory extends Component {
 
         cNodes = numbers.map((num) => num = Number(this.state.lowerBound) + Math.round(num*(this.state.upperBound-this.state.lowerBound)));
 
+        // end section to move to server!!!
+
         this.props.addFactory( {name: this.state.name, 
             upperBound: this.state.upperBound, 
             lowerBound: this.state.lowerBound, 
+            // child nodes will need to go...this will be taken care of on server
             childNodes: cNodes, 
             numberOfNodes: this.state.numberOfNodes
 
@@ -68,30 +84,36 @@ export class AddFactory extends Component {
                     onChange={this.onChange}
                 />
                 <TextField
+                    required
                     type="number" 
                     name="lowerBound" 
                     style={{ flex: '10', padding: '5px' }}
                     placeholder="Lower Bound"
                     value={this.state.lowerBound}
                     onChange={this.onChange}
+                    InputProps={{inputProps: { min: 0, max: Number(this.state.upperBound)-1}}}
                 />
                 <TextField
+                    required
                     type="number" 
                     name="upperBound" 
                     style={{ flex: '10', padding: '5px' }}
                     placeholder="Upper Bound"
                     value={this.state.upperBound}
                     onChange={this.onChange}
+                    InputProps={{inputProps: { min:  Number(this.state.lowerBound)+1 /*!=="" ?  : */, max: 1000000}}}
                 />
                 <TextField
+                    required
                     type="number" 
                     min="0"
                     max="15"
                     name="numberOfNodes" 
                     style={{ flex: '10', padding: '5px' }}
-                    placeholder="Number of Nodes"
+                    placeholder="Nodes"
                     value={this.state.numberOfNodes}
                     onChange={this.onChange}
+                    InputProps={{inputProps: { min: 0, max: 15}}}
                 />
                 <br/>
                 <Button
