@@ -41,7 +41,7 @@ class App extends Component {
             this.setState({ factories:[...this.state.factories, res.data.createdFactory] })
           });
         
-  }
+  };
 
 
   delFactory = (_id) => {
@@ -61,7 +61,7 @@ class App extends Component {
       )
       .then(response => 
             console.log(response));
-  }
+  };
 
 
   render() {

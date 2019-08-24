@@ -12,9 +12,14 @@ export class AddFactory extends Component {
         lowerBound: '',
         childNodes: '',
         numberOfNodes: '',
-        _id: ''
+        _id: '',
+        allValid: false
     }
 
+
+    checkValidity = () => {
+        return true;
+    }
 
     onChange = (e) => {
         // always update state with user input
@@ -75,7 +80,7 @@ export class AddFactory extends Component {
         <ExpansionPanelDetails>
             <form onSubmit={this.onSubmit} >
                 <TextField 
-                    required
+                    fullWidth
                     label="Name"
                     type="text" 
                     name="name" 
@@ -84,8 +89,9 @@ export class AddFactory extends Component {
                     value={this.state.name}
                     onChange={this.onChange}
                 />
+                <br/>
                 <TextField
-                    required
+                    fullWidth
                     label="Lower"
                     type="number" 
                     name="lowerBound" 
@@ -95,8 +101,9 @@ export class AddFactory extends Component {
                     onChange={this.onChange}
                     InputProps={{inputProps: { min: 0, max: Number(this.state.upperBound)-1}}}
                 />
+                <br/>
                 <TextField
-                    required
+                    fullWidth
                     label="Upper"
                     type="number" 
                     name="upperBound" 
@@ -106,8 +113,9 @@ export class AddFactory extends Component {
                     onChange={this.onChange}
                     InputProps={{inputProps: { min:  Number(this.state.lowerBound)+1 /*!=="" ?  : */, max: 1000000}}}
                 />
+                <br/>
                 <TextField
-                    required
+                    fullWidth
                     label="Nodes"
                     type="number" 
                     min="0"
