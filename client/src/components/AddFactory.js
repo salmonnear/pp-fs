@@ -17,29 +17,7 @@ export class AddFactory extends Component {
     }
 
 
-    checkValidity = () => {
-        return true;
-    }
-
-    onChange = (e) => {
-        // always update state with user input
-        this.setState({ [e.target.name]: e.target.value });
-
-        /* 
-        {e.target.name == "lowerBound" && 
-        ? }
-
-
-        */
-
-    }
-
-    onSubmit = (e) => {
-        e.preventDefault();
-
-        // begin move this section to server!!!
-        // but maybe not? ok here for now?
-
+    generateChildren = (lower, upper, numOfNodes) => {
         var cNodes = [];
         var numbers = [];
         
@@ -48,16 +26,41 @@ export class AddFactory extends Component {
         };
 
         cNodes = numbers.map((num) => num = Number(this.state.lowerBound) + Math.round(num*(this.state.upperBound-this.state.lowerBound)));
+        return cNodes;
+    }
 
-        // end section to move to server!!!
+    checkValidity = () => {
+        return true;
+    }
+
+    onChange = (e) => {
+        this.setState({ [e.target.name]: e.target.value });
+    }
+
+    onSubmit = (e) => {
+        e.preventDefault();
+        this.generateChildren(this.state.lowerBound, this.state.upperBound, this.state.numberOfNodes);
+
+        var children = [];
+
+        children = this.generateChildren(this.state.lowerBound, this.state.upperBound, this.state.numberOfNodes);
+        console.log(children);
 
         this.props.addFactory( {name: this.state.name, 
             upperBound: this.state.upperBound, 
             lowerBound: this.state.lowerBound, 
-            childNodes: cNodes, 
+            childNodes: children, 
             numberOfNodes: this.state.numberOfNodes
 
         });
+
+        this.setState({
+            name: '',
+            lowerBound: '',
+            upperBound: '',
+            numberOfNodes: ''
+        })
+
 
     }
 

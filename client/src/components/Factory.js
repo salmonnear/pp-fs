@@ -36,6 +36,9 @@ export class Factory extends Component {
               <br/>
               Lower: {lowerBound}
               <br/>
+              <br/>
+              <br/>
+
               <IconButton onClick={this.props.delFactory.bind(this, _id)} aria-label="delete" size="small"><DeleteIcon /></IconButton>
             </Typography>
 
