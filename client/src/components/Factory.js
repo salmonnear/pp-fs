@@ -17,19 +17,19 @@ export class Factory extends Component {
         const {  _id, name, childNodes, upperBound, lowerBound } = this.props.factory;
         
         return (
-            <React.Fragment key={_id}>
+            <div key={_id}>
             <ExpansionPanel>
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1bh-content"
                 id="panel1bh-header"
                 >
-                <Typography className="factTitle"><h3>{name}</h3></Typography>
+                <Typography className="factTitle"><p key={_id}>{name}</p></Typography>
               </ExpansionPanelSummary>
             <ExpansionPanelDetails>
             <Typography key={name}>
-              <h3>Nodes</h3>{childNodes.map((num) => {
-                return <ul>{num}</ul>;
+              <p>Nodes</p>{childNodes.map((num) => {
+                return <p>{num}</p>;
               })}
               <br/>
               Upper: {upperBound}
@@ -44,7 +44,7 @@ export class Factory extends Component {
           
         </ExpansionPanelDetails>
         </ExpansionPanel>
-        </React.Fragment>
+        </div>
         )
     }
 }

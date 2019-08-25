@@ -54,7 +54,6 @@ export class AddFactory extends Component {
         this.props.addFactory( {name: this.state.name, 
             upperBound: this.state.upperBound, 
             lowerBound: this.state.lowerBound, 
-            // child nodes will need to go...this will be taken care of on server
             childNodes: cNodes, 
             numberOfNodes: this.state.numberOfNodes
 

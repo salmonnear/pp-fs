@@ -59,15 +59,17 @@ class App extends Component {
     axios 
         .patch(`/factories/${_id}`,   factory
       )
-      .then(response => 
-            console.log(response));
+      .then( 
+        //this.setState({this.state.factories:})
+        response => console.log(response)
+        );
   };
 
 
   render() {
     return (
 
-      <div className="App" >
+      <div className="App">
         <AddFactory addFactory={this.addFactory}/>
         <h1 className="headerLabel">Factories</h1>
         <Factories key={this.state.factories._id} factories = { this.state.factories } delFactory={ this.delFactory} adjustFactory={this.adjustFactory}/>
