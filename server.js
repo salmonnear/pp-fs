@@ -9,11 +9,9 @@ const io = socketIO(server);
 
 
 io.on('connection', (socket) => {
-    //io.emit('cool msg');
     console.log('hi from socket, connected');
 
     socket.on('disconnect', () => {
-        //io.emit('user disconnected');
         console.log('user disconnected');
     });
 });

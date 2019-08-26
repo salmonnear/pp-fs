@@ -4,7 +4,6 @@ import Factories from './components/Factories';
 import axios from 'axios';
 import AddFactory from './components/AddFactory';
 import io from 'socket.io-client';
-import {URI_DB} from './';
 // import theme from './theme';
 /*
 const socket = io('/factories');

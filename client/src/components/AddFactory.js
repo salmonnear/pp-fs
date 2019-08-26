@@ -44,7 +44,6 @@ export class AddFactory extends Component {
         var children = [];
 
         children = this.generateChildren(this.state.lowerBound, this.state.upperBound, this.state.numberOfNodes);
-        console.log(children);
 
         this.props.addFactory( {name: this.state.name, 
             upperBound: this.state.upperBound, 
