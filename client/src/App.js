@@ -19,7 +19,6 @@ class App extends Component {
 
   
   componentDidMount() {
-    console.log('test')
     axios
       .get('/factories')
         .then(res => this.setState({ factories: res.data.factories }));
@@ -54,14 +53,29 @@ class App extends Component {
   };
 
 
-  adjustFactory = (_id, factory) => {
+  adjustFactory = (_id, factory, regFactory, name, lower, upper, numberOfNodes, children) => {
+    var index = Number;
+    //var name = String;
+    var upperBound = Number;
+    var lowerBound = Number;
+    var childNodes = [];
+    var numberOfNodes = Number;
     axios 
         .patch(`/factories/${_id}`,   factory
       )
-      .then( 
-        //this.setState({this.state.factories:})
-        response => console.log(response)
-        );
+      .then( res => {
+        console.log(res);
+          }
+      )
+      .then(index = this.state.factories.findIndex(obj => obj._id === _id))
+
+      this.state.factories[index].name = name;//'test';//factory[0].value;//regFactory;//factory.name;
+      this.state.factories[index].lowerBound = lower;//1;//factory[1].value;//1;//factory.lowerBound;
+      this.state.factories[index].upperBound = upper;//2;//factory[2].value;;//factory.upperBound;
+      this.state.factories[index].numberOfNodes = numberOfNodes;//factory[3].value;;//factory.numberOfNodes;
+      this.state.factories[index].childNodes = children;//factory[4].value;;//factory.childNodes;
+      this.forceUpdate();
+
   };
 
 

@@ -31,6 +31,8 @@ export class AdjustFactory extends Component {
 
     }
 
+
+
     componentDidMount() {
         this.setState({ numberOfNodes: this.props.factory.numberOfNodes });
         this.setState({ childNodes: this.props.factory.childNodes });
@@ -44,9 +46,6 @@ export class AdjustFactory extends Component {
         var cNodes = [];
         var numbers = [];
         
-        (this.state.gotNewLower? this.setState({ lowerForUpdate: this.state.newLowerBound}) : this.setState({ lowerForUpdate: this.state.lowerBound}) );
-        (this.state.gotNewUpper? this.setState({ upperForUpdate: this.state.newUpperBound}) : this.setState({ upperForUpdate: this.state.upperBound}) );
-        (this.state.gotNewNumberOfNodes? this.setState({ numberOfNodesForUpdate: this.state.newNumberOfNodes}) : this.setState({ numberOfNodesForUpdate: this.state.numberOfNodes}) );
 
         for (var i=0; i < this.state.numberOfNodesForUpdate; i++) {
             numbers.push(Math.random());
@@ -56,85 +55,125 @@ export class AdjustFactory extends Component {
         return cNodes;
     }
 
+    
     checkFormValidity = () => {
-        if (this.state.newUpperBound.length>1 && typeof this.state.newUpperBound !== 'number') {
+
+        // need to check for upper and lower conflicts here...
+        if (this.state.gotNewUpper && typeof this.state.newUpperBound !== 'number') {
             this.setState({ newUpperBoundIsValid: false});
         }
-        if (this.state.newLowerBound.length>1 && typeof this.state.newLowerBound !== 'number') {
+        if (this.state.gotNewLower && typeof this.state.newLowerBound !== 'number') {
             this.setState({ newLowerBoundIsValid: false});
         }
-        if (this.state.newNumberOfNodes.length>1 && typeof this.state.newNumberOfNodes !== 'number') {
+        if (this.state.gotNewNumberOfNodes && typeof this.state.newNumberOfNodes !== 'number') {
             this.setState({ newNumberOfNodesIsValid: false});
         }
 
-        if (this.state.newNameIsValid && this.state.newUpperBoundIsValid && this.state.newLowerBoundIsValid && this.state.newNumberOfNodesIsValid) {
+        //name doesn't matter, don't check it
+        if (this.state.newUpperBoundIsValid && this.state.newLowerBoundIsValid && this.state.newNumberOfNodesIsValid) {
             this.setState({ allValid: true })
         }
     }
+    
+
+
 
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
 
+
+        //set gotNewXXXX state while typing
+        if (e.target.name === 'newName' && e.target.value.length > 0) {
+            this.setState({gotNewName: true});
+        } else if (e.target.name === 'newName' && e.target.value.length < 1) {
+            this.setState({gotNewName: false});
+        }
+
+        if (e.target.name === 'newUpperBound' && e.target.value.length > 0) {
+            this.setState({gotNewUpper: true});
+        } else if (e.target.name === 'newUpperBound' && e.target.value.length < 1) {
+            this.setState({gotNewUpper: false});
+        }
+
+        if (e.target.name === 'newLowerBound' && e.target.value.length > 0) {
+            this.setState({gotNewLower: true});
+        } else if (e.target.name === 'newLowerBound' && e.target.value.length < 1) {
+            this.setState({gotNewLower: false});
+        }
+
+        if (e.target.name === 'newNumberOfNodes' && e.target.value.length > 0) {
+            this.setState({gotNewNumberOfNodes: true});
+        } else if (e.target.name === 'newNumberOfNodes' && e.target.value.length < 1) {
+            this.setState({gotNewNumberOfNodes: false});
+        }
+
+
+        (this.state.gotNewName? this.setState({ nameForUpdate: this.state.newName}) : this.setState({ lowerForUpdate: this.state.name}) );
+        (this.state.gotNewLower? this.setState({ lowerForUpdate: this.state.newLowerBound}) : this.setState({ lowerForUpdate: this.state.lowerBound}) );
+        (this.state.gotNewUpper? this.setState({ upperForUpdate: this.state.newUpperBound}) : this.setState({ upperForUpdate: this.state.upperBound}) );
+        (this.state.gotNewNumberOfNodes? this.setState({ numberOfNodesForUpdate: this.state.newNumberOfNodes}) : this.setState({ numberOfNodesForUpdate: this.state.numberOfNodes}) );
+
+
+        //this.checkFormValidity();
+
     }
+
 
     onSubmit = (e) => {
         e.preventDefault();
 
         const updateFactory = [];
 
-        this.checkFormValidity();
+        // this.checkFormValidity();
 
         // build patch array of objects and generate new children if necessary
-        if (this.state.newName!==this.state.name && this.state.newName.length>0) {
+        if (this.state.gotNewName) {
             updateFactory.push({"propName": "name", "value": this.state.newName});
             //this.setState({ name: this.props.factory.newName });
-            this.setState({gotNewName: true});
+            
+            //this.setState({gotNewName: true});
         };
 
-        if (this.state.newUpperBound!==this.state.upperBound && this.state.newUpperBound.length>0) {
+        if (this.state.gotNewUpper) {
             updateFactory.push({"propName": "upperBound", "value": this.state.newUpperBound});
-            this.setState({gotNewUpper: true});
+            
+            //this.setState({gotNewUpper: true});
         };
 
-        if (this.state.newLowerBound!==this.state.lowerBound && this.state.newLowerBound.length>0) {
+        if (this.state.gotNewLower) {
             updateFactory.push({"propName": "lowerBound", "value": this.state.newLowerBound});
-            this.setState({gotNewLower: true});
+            
+            //this.setState({gotNewLower: true});
         };
 
-        if (this.state.newNumberOfNodes!==this.state.numberOfNodes && this.state.newNumberOfNodes.length>0) {
+        if (this.state.gotNewNumberOfNodes) {
             updateFactory.push({"propName": "numberOfNodes", "value": this.state.newNumberOfNodes});
-            this.setState({gotNewNumberOfNodes: true});
+            
+            //this.setState({gotNewNumberOfNodes: true});
         };
 
         //if ((this.state.newNumberOfNodes!==this.state.numberOfNodes && this.state.newNumberOfNodes.length>0) || (this.state.newLowerBound!==this.state.lowerBound && this.state.newLowerBound.length>0) || (this.state.newUpperBound!==this.state.upperBound && this.state.newUpperBound.length>0) ) {
-        if (this.gotNewLower || this.gotNewUpper|| this.gotNewNumberOfNodes) {
-        /*
-            var cNodes = [];
-            var numbers = [];
-    
-            for (var i=0; i < this.state.newNumberOfNodes; i++) {
-                numbers.push(Math.random());
-            };
+        if (this.state.gotNewLower || this.state.gotNewUpper|| this.state.gotNewNumberOfNodes) {
 
-
-            cNodes = numbers.map((num) => num = Number(this.state.newLowerBound) + Math.round(num*(this.state.newUpperBound-this.state.newLowerBound)));
-            console.log(cNodes);
-
-            */
 
             var children = [];
-            children = this.generateChildren(this.state.lowerBound, this.state.upperBound, this.state.numberOfNodes)
-
+            children = this.generateChildren(this.state.lowerBound, this.state.upperBound, this.state.numberOfNodes);
             updateFactory.push({"propName": "childNodes", "value": children})
         };
 
+        var plainFactory = {};
 
+        plainFactory = {
+            name: this.state.nameForUpdate,
+            lowerBound: this.state.lowerForUpdate,
+            upperBound: this.state.upperForUpdate,
+            children,
+            numberOfNodes: this.state.numberOfNodesForUpdate
+        };
 
-
-        this.props.adjustFactory( this.state._id, updateFactory);
-
+        this.props.adjustFactory( this.state._id, updateFactory, plainFactory, this.state.nameForUpdate, this.state.lowerForUpdate, this.state.upperForUpdate, this.state.numberOfNodesForUpdate, children);
+        this.props.updateThisFactory(this.state.nameForUpdate, this.state.upperForUpdate, this.state.lowerForUpdate, children, this.state.numberOfNodesForUpdate);
     }
-
 
 
     render() {

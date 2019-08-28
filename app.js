@@ -7,7 +7,6 @@ const path = require('path');
 
 const factoryRoutes = require('./api/routes/factories');
 
-
 var mongoDB = 'mongodb+srv://' + process.env.MONGO_PW +'.mongodb.net/test?retryWrites=true&w=majority';
 
 
