@@ -42,8 +42,8 @@ export class Factory extends Component {
 
 
     render() {
-
-        const {  _id, name, childNodes, upperBound, lowerBound } = this.state;//this.props.factory;
+        const { _id } = this.props.factory;
+        const {   name, childNodes, upperBound, lowerBound } = this.state;//this.props.factory;
         
         return (
             <div key={_id}>
