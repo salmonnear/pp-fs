@@ -83,8 +83,6 @@ export class AdjustFactory extends Component {
         var targName = e.target.name;
         var targVal = e.target.value;
 
-
-
         this.setState({ [e.target.name]: e.target.value },
             () => {
                 // for name
@@ -125,50 +123,6 @@ export class AdjustFactory extends Component {
                     this.setState({gotNewNumberOfNodes: false});
                 }
             });
-/*
-            this.setState({ [e.target.name]: e.target.value },
-                () => {
-                    if (e.target.name === 'newName' && e.target.value.length > 0) {
-                        this.setState({gotNewName: true});
-                    } else if (e.target.name === 'newName' && e.target.value.length < 1) {
-                        this.setState({gotNewName: false});
-                    }
-                });
-
-                */
-
-        //set gotNewXXXX state while typing
-        /*
-        if (e.target.name === 'newName' && e.target.value.length > 0) {
-            this.setState({gotNewName: true});
-        } else if (e.target.name === 'newName' && e.target.value.length < 1) {
-            this.setState({gotNewName: false});
-        }
-
-        if (e.target.name === 'newUpperBound' && e.target.value.length > 0) {
-            this.setState({gotNewUpper: true});
-        } else if (e.target.name === 'newUpperBound' && e.target.value.length < 1) {
-            this.setState({gotNewUpper: false});
-        }
-
-        if (e.target.name === 'newLowerBound' && e.target.value.length > 0) {
-            this.setState({gotNewLower: true});
-        } else if (e.target.name === 'newLowerBound' && e.target.value.length < 1) {
-            this.setState({gotNewLower: false});
-        }
-
-        if (e.target.name === 'newNumberOfNodes' && e.target.value.length > 0) {
-            this.setState({gotNewNumberOfNodes: true});
-        } else if (e.target.name === 'newNumberOfNodes' && e.target.value.length < 1) {
-            this.setState({gotNewNumberOfNodes: false});
-        }
-*/
-
-        //(this.state.gotNewName? this.setState({ nameForUpdate: this.state.newName}) : this.setState({ nameForUpdate: this.state.name}) );
-        //(this.state.gotNewLower? this.setState({ lowerForUpdate: this.state.newLowerBound}) : this.setState({ lowerForUpdate: this.state.lowerBound}) );
-        //(this.state.gotNewUpper? this.setState({ upperForUpdate: this.state.newUpperBound}) : this.setState({ upperForUpdate: this.state.upperBound}) );
-        //(this.state.gotNewNumberOfNodes? this.setState({ numberOfNodesForUpdate: this.state.newNumberOfNodes}) : this.setState({ numberOfNodesForUpdate: this.state.numberOfNodes}) );
-
 
         //this.checkFormValidity();
 

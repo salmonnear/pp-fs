@@ -64,7 +64,7 @@ export class Factory extends Component {
             {childNodes.map((num) => {
                 return <p>{num}</p>;
               })}
-
+            
             
             { /* {this.state.childNodes.map((num) => {
                 return <p>{num}</p>;
