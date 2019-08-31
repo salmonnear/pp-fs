@@ -27,19 +27,39 @@ export class AdjustFactory extends Component {
         gotNewNumberOfNodes: false,
         newNumberOfNodesIsValid: true,
         _id: '',
-        allValid: false
+        allValid: false,
+        childrenForUpdate: []
 
     }
 
 
 
     componentDidMount() {
+        //this is really not necessary at all...
+        this.setState({ numberOfNodes: this.props.factory.numberOfNodes,
+                        childNodes: this.props.factory.childNodes,
+                        lowerBound: this.props.factory.lowerBound,
+                        upperBound: this.props.factory.upperBound,
+                        name: this.props.factory.name,
+                        _id: this.props.factory._id });
+
+        this.setState({
+                        nameForUpdate: this.state.name,
+                        lowerForUpdate: this.state.lowerBound,
+                        upperForUpdate: this.state.upperBound,
+                        numberOfNodesForUpdate: this.state.numberOfNodes,
+                        childrenForUpdate: this.state.childNodes
+        })
+
+        /*
         this.setState({ numberOfNodes: this.props.factory.numberOfNodes });
         this.setState({ childNodes: this.props.factory.childNodes });
         this.setState({ lowerBound: this.props.factory.lowerBound });
         this.setState({ upperBound: this.props.factory.upperBound });
         this.setState({ name: this.props.factory.name });
         this.setState({ _id: this.props.factory._id });
+*/
+
     }
 
     generateChildren = (lower, upper, numOfNodes) => {
@@ -162,13 +182,13 @@ export class AdjustFactory extends Component {
             //this.setState({gotNewNumberOfNodes: true});
         };
 
-        //if ((this.state.newNumberOfNodes!==this.state.numberOfNodes && this.state.newNumberOfNodes.length>0) || (this.state.newLowerBound!==this.state.lowerBound && this.state.newLowerBound.length>0) || (this.state.newUpperBound!==this.state.upperBound && this.state.newUpperBound.length>0) ) {
         if (this.state.gotNewLower || this.state.gotNewUpper|| this.state.gotNewNumberOfNodes) {
 
 
             var children = [];
             children = this.generateChildren(this.state.lowerBound, this.state.upperBound, this.state.numberOfNodes);
             updateFactory.push({"propName": "childNodes", "value": children})
+            this.setState({ childrenForUpdate: children});
         };
 
         var plainFactory = {};
@@ -177,17 +197,19 @@ export class AdjustFactory extends Component {
             name: this.state.nameForUpdate,
             lowerBound: this.state.lowerForUpdate,
             upperBound: this.state.upperForUpdate,
-            children,
+            children: children,
             numberOfNodes: this.state.numberOfNodesForUpdate
         };
 
-        this.props.adjustFactory( this.state._id, updateFactory, plainFactory, this.state.nameForUpdate, this.state.lowerForUpdate, this.state.upperForUpdate, this.state.numberOfNodesForUpdate, children);
-        this.props.updateThisFactory(this.state.nameForUpdate, this.state.upperForUpdate, this.state.lowerForUpdate, children, this.state.numberOfNodesForUpdate);
+
+        this.props.adjustFactory( this.state._id, updateFactory, plainFactory, this.state.nameForUpdate, this.state.lowerForUpdate, this.state.upperForUpdate, this.state.numberOfNodesForUpdate, this.state.childrenForUpdate);
+        //this.props.updateThisFactory(this.state.nameForUpdate, this.state.upperForUpdate, this.state.lowerForUpdate, this.state.childrenForUpdate, this.state.numberOfNodesForUpdate);
+        console.log(children);
     }
 
 
     render() {
-        const { _id, name, childNodes, upperBound, lowerBound } = this.props.factory;
+        var { _id, name, childNodes, upperBound, lowerBound } = this.props.factory;
         return (
             <div className="container">
                 <h3>Adjust Factory</h3>

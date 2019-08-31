@@ -30,7 +30,9 @@ export class Factory extends Component {
       })
     };
 
-    updateThisFactory = (inName, inUpper, inLower, inChildren, inNum) => {
+//doesn't seem necessary...
+/*
+    updateThisFactory = (inName, inUpper, inLower, [inChildren], inNum) => {
       this.setState({
         name: inName,
         upperBound: inUpper,
@@ -39,11 +41,11 @@ export class Factory extends Component {
         numberOfNodes: inNum
       })
     }
-
+*/
 
     render() {
         const { _id } = this.props.factory;
-        const {   name, childNodes, upperBound, lowerBound } = this.state;//this.props.factory;
+        var {   name, childNodes, upperBound, lowerBound } = this.props.factory;//this.state;//this.props.factory;
         
         return (
             <div key={_id}>
@@ -61,6 +63,12 @@ export class Factory extends Component {
             <Typography /*key={name}*/>
             <p>Nodes</p> 
             
+            
+            {/*Array([1,2,5]).map((num) => {
+                return <p>{num}</p>;
+              })*/}
+
+
             {childNodes.map((num) => {
                 return <p>{num}</p>;
               })}
