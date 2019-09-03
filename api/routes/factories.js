@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const sanitize = require('mongo-sanitize');
 
 const Factory = require('../models/factory');
+var io = require('../../server');
 
 
 router.get('/', (req, res, next) => {

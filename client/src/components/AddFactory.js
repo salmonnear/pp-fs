@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ExpansionPanel, ExpansionPanelDetails, Button, TextField, ExpansionPanelSummary } from '@material-ui/core';
-
 import AddBoxIcon from '@material-ui/icons/AddBox';
 
   
@@ -10,6 +9,7 @@ export class AddFactory extends Component {
         name: '',
         upperBound: '',
         lowerBound: '',
+        rangeIsValid: true,
         childNodes: '',
         numberOfNodes: '',
         _id: '',
@@ -29,17 +29,44 @@ export class AddFactory extends Component {
         return cNodes;
     }
 
+    checkAllValid = () => {
+        (this.state.name.length > 0 && this.state.numberOfNodes.length > 0 && this.state.rangeIsValid
+            ? this.setState({
+                allValid: true
+            })    
+            : 
+            this.setState({
+                allValid: false
+            }));
+    }
+
     checkValidity = () => {
-        return true;
+
+        //check upper vs lower...
+        
+            if (this.state.upperBound.length !== 0 && this.state.lowerBound.length !== 0) {
+                (Number(this.state.upperBound) > Number(this.state.lowerBound)
+                    ? this.setState({
+                        rangeIsValid: true
+                    },this.checkAllValid())
+                    : this.setState({
+                        rangeIsValid: false
+                    }, this.checkAllValid())
+                    )
+            }
+
+
     }
 
     onChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value });
+        this.setState({ [e.target.name]: e.target.value },
+            this.checkValidity);
     }
 
     onSubmit = (e) => {
         e.preventDefault();
         this.generateChildren(this.state.lowerBound, this.state.upperBound, this.state.numberOfNodes);
+
 
         var children = [];
 
@@ -100,8 +127,9 @@ export class AddFactory extends Component {
                     placeholder="Lower Bound"
                     value={this.state.lowerBound}
                     onChange={this.onChange}
-                    InputProps={{inputProps: { min: 0, max: Number(this.state.upperBound)-1}}}
+                    InputProps={{inputProps: { min: 0, max: (this.state.upperBound==="" ? 1000000 : Number(this.state.upperBound)-1)}}}
                 />
+
                 <br/>
                 <TextField
                     fullWidth
@@ -114,6 +142,7 @@ export class AddFactory extends Component {
                     onChange={this.onChange}
                     InputProps={{inputProps: { min:  Number(this.state.lowerBound)+1 /*!=="" ?  : */, max: 1000000}}}
                 />
+                {(this.state.rangeIsValid || (this.state.lowerBound.length < 1 || this.state.upperBound.length < 1) )  ? null : <p className="inputWarning">Enter upper bound greater than lower bound</p>}
                 <br/>
                 <TextField
                     fullWidth
@@ -128,10 +157,13 @@ export class AddFactory extends Component {
                     onChange={this.onChange}
                     InputProps={{inputProps: { min: 0, max: 15}}}
                 />
+                
+
                 <br/>
                 <Button
                     type="submit"
                     value="submit"
+                    disabled={!this.state.allValid}
                     className="btn">
                         Add
                     </Button>

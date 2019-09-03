@@ -14,8 +14,12 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         console.log('user disconnected');
     });
+
+    socket.emit('test', {data: 'ok'});
 });
 
 server.listen(port, () => {
     console.log('listening on port ' + port);
 });
+
+module.exports = server, io;

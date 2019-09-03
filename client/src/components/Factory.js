@@ -7,7 +7,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { IconButton } from '@material-ui/core';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import Grid from '@material-ui/core/Grid';
 
 
 export class Factory extends Component {
@@ -30,18 +29,7 @@ export class Factory extends Component {
       })
     };
 
-//doesn't seem necessary...
-/*
-    updateThisFactory = (inName, inUpper, inLower, [inChildren], inNum) => {
-      this.setState({
-        name: inName,
-        upperBound: inUpper,
-        lowerBound: inLower,
-        childNodes: inChildren,
-        numberOfNodes: inNum
-      })
-    }
-*/
+
 
     render() {
         const { _id } = this.props.factory;
@@ -58,26 +46,14 @@ export class Factory extends Component {
                 <Typography className="factTitle"><p key={_id}>{name}</p></Typography>
               </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-            {/*<Grid>*/}
-            {/*<Grid xs={4}>*/}
-            <Typography /*key={name}*/>
-            <p>Nodes</p> 
-            
-            
-            {/*Array([1,2,5]).map((num) => {
-                return <p>{num}</p>;
-              })*/}
 
+            <Typography>
+            <p>Nodes</p> 
 
             {childNodes.map((num) => {
                 return <p>{num}</p>;
               })}
-            
-            
-            { /* {this.state.childNodes.map((num) => {
-                return <p>{num}</p>;
-              })}
-              */
+
               }
               <br/>
               Upper: {upperBound}
@@ -89,13 +65,7 @@ export class Factory extends Component {
 
               <IconButton onClick={this.props.delFactory.bind(this, _id)} aria-label="delete" size="small"><DeleteIcon /></IconButton>
             </Typography>
-            {/*</Grid>*/}
-            {/*<Grid xs={8}>*/}
 
-
-
-            {/*  maybe need to create function to set from adjustfactory? or can just use part of adjust FActory funciton */}
-                {/*<AdjustFactory style={{alignContent: "right"}} key={_id} factory={this.props.factory} adjustFactory={this.props.adjustFactory}/>*/}
               <AdjustFactory 
                 key={_id} 
                 factory={this.props.factory} 
@@ -103,8 +73,6 @@ export class Factory extends Component {
                 updateThisFactory={this.updateThisFactory}
                 />
 
-            {/*</Grid>*/}
-          {/*</Grid>*/}
         </ExpansionPanelDetails>
         </ExpansionPanel>
         </div>

@@ -16,8 +16,6 @@ export class Factories extends Component {
                     <Factory style={{position: 'absolute', right: 0}}key = {factory._id} factory={factory} delFactory={this.props.delFactory}  adjustFactory={this.props.adjustFactory} />
             </div>
         ));
-
-
     }
 }
 
