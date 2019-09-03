@@ -54,7 +54,7 @@ export class Factory extends Component {
                 return <p>{num}</p>;
               })}
 
-              }
+              
               <br/>
               Upper: {upperBound}
               <br/>
